@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Canvas } from "../../components/canvas";
+import { Canvas } from "components/Canvas";
 export const MessengerView: FC = ({}) => {
   return (
     <div className="md:hero mx-auto p-4">
@@ -8,8 +8,8 @@ export const MessengerView: FC = ({}) => {
           Messenger
         </h1>
         {/* CONTENT GOES HERE */}
-          <Canvas/>
-          </div>
-        </div>
+        <Canvas />
+      </div>
+    </div>
   );
 };
