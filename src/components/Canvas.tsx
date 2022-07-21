@@ -4,14 +4,21 @@ import { SendMessage } from "../components/SendMessage";
 export const Canvas: React.FC = (props) => {
   const canvas = React.useRef<any>();
 
-  const printAt = (context, text, x, y, lineHeight = 30, fitWidth) => {
+  const printAt = (
+    context: any,
+    text: string,
+    x: number,
+    y: number,
+    lineHeight = 30,
+    fitWidth: number
+  ) => {
     fitWidth = fitWidth || 0;
     if (fitWidth <= 0) {
       context.fillText(text, x, y);
       return;
     }
-    for (var idx = 1; idx <= text.length; idx++) {
-      var str = text.substr(0, idx);
+    for (let idx = 1; idx <= text.length; idx++) {
+      const str = text.substr(0, idx);
       if (context.measureText(str).width > fitWidth) {
         context.fillText(text.substr(0, idx - 1), x, y);
         printAt(
@@ -29,20 +36,23 @@ export const Canvas: React.FC = (props) => {
   };
 
   const set_Image = () => {
-    var ctx = canvas.current.getContext("2d");
-    let base_image = new Image();
+    const ctx = canvas.current.getContext("2d");
+    const base_image = new Image();
     base_image.src = "nft.png";
     ctx.drawImage(
       base_image,
-      canvas.current.width / 2,
-      canvas.current.height / 2
+      0,
+      0,
+      canvas.current.width,
+      canvas.current.height
     );
   };
 
   const onWriteMessage = (e: any) => {
-    var ctx = canvas.current.getContext("2d");
+    const ctx = canvas.current.getContext("2d");
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
+
     //  clear letters
     ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
     // image set
@@ -54,7 +64,8 @@ export const Canvas: React.FC = (props) => {
       ctx,
       e.target.value,
       canvas.current.width / 2,
-      canvas.current.height / 2,
+      // canvas.current.height / 2,
+      30,
       30,
       canvas.current.width
     );
